@@ -1635,9 +1635,9 @@ section {
     color: #4272d7;
 }
 
-.navbar-sidebar .navbar__list li.active > a {
-    color: #4272d7;
-}
+/*.navbar-sidebar .navbar__list li.active > a {*/
+/*    color: #4272d7;*/
+/*}*/
 
 .has-sub {
     position: relative;

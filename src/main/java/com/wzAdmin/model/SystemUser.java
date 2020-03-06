@@ -12,6 +12,7 @@ public class SystemUser implements Serializable {
     private String role;
     private int status;
     private String email;
+    private String url;
 
 
     public interface Status{

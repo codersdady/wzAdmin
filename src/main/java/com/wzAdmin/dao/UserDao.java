@@ -37,6 +37,7 @@ public class UserDao {
             systemUser.setRole((String) map.get("role"));
             systemUser.setEmail((String) map.get("email"));
             systemUser.setStatus(Integer.valueOf((String) map.get("status")));
+//            systemUser.setUrl((String) map.get("img"));
             return systemUser;
         }else {
             return null;
@@ -58,6 +59,7 @@ public class UserDao {
         systemUser.setStatus(Integer.valueOf((String) map.get("status")));
         systemUser.setRole((String) map.get("role"));
         systemUser.setBirthday((String) map.get("birthday"));
+        systemUser.setUrl((String) map.get("img"));
         return systemUser;
     }
 
@@ -75,6 +77,7 @@ public class UserDao {
             map.put("role","PERSON");
             map.put("status","0");
             map.put("email",systemUser.getEmail());
+            map.put("img",systemUser.getUrl());
             try{
                 redisTemplate.opsForHash().putAll("user:"+uuid,map);
                 log.info("注册成功->>"+systemUser.getName());
@@ -102,5 +105,11 @@ public class UserDao {
             throw e;
         }
         return "success";
+    }
+
+    public String getImgById(String id){
+        Map<Object, Object> map=redisTemplate.opsForHash().entries("user:"+id);
+        String img= (String) map.get("img");
+        return img;
     }
 }

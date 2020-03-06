@@ -1,0 +1,23 @@
+#file{
+    opacity:0;
+    height: 0px;
+    width: 0px;
+}
+#file_button{
+    background: #288cdd;
+    border: none;
+    width: 200px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 18px;
+    color: #fde;
+
+}
+#div1{
+    float: left;
+}
+#div2{
+    margin-top: 18px;
+    margin-left: 111px;
+    float:left;
+}

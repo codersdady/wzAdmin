@@ -37,4 +37,8 @@ public class UserService{
         String resule=userDao.updateUser(user);
         return resule;
     }
+    public String getImgById(String id){
+        String img=userDao.getImgById(id);
+        return img;
+    }
 }
