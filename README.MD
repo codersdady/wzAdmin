@@ -1,4 +1,4 @@
-# 项目描述（未完成）
+# 项目描述
 ## 前端
 <font size=4 face="宋体"><p  style="text-indent:2em">**本项目前端用到的有jQuery、ajax、thymeleaf，CSS样式使用的是bootstrap模板。**</p>
 </font>
