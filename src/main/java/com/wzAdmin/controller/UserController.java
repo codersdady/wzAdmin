@@ -1,23 +1,12 @@
 package com.wzAdmin.controller;
-
-
-
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.sun.org.apache.xpath.internal.operations.Mod;
 import com.wzAdmin.model.SystemUser;
 import com.wzAdmin.service.UserService;
 import com.wzAdmin.utils.Base64ImageUtils;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import sun.misc.BASE64Encoder;
-
-
 import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -38,8 +27,6 @@ public class UserController {
 
     @RequestMapping("/register")
     public String register(){
-
-
         return "register";
     }
 
@@ -52,21 +39,38 @@ public class UserController {
                               Model model,
                               HttpServletRequest request){
 
-        String content = base64ImageUtils.encodeImageToBase64(file);
-        Map<String, String> criteria = new HashMap<>();
-        criteria.put("content", content);
 
+
+        if(name==null||name.equals("")){
+            model.addAttribute("log","用户名不能为空");
+            return "/register";
+        }
+        if(password==null||password.equals("")){
+            model.addAttribute("log","用户密码不能为空");
+            return "/register";
+        }
+        if(email==null||email.equals("")){
+            model.addAttribute("log","用户邮箱不能为空");
+            return "/register";
+        }
         SystemUser systemUser=new SystemUser();
         systemUser.setName(name);
         systemUser.setPassword(password);
         systemUser.setBirthday(String.valueOf(birthday));
         systemUser.setEmail(email);
-        systemUser.setUrl("data:image/png;base64,"+content);
+        if(file==null||file.isEmpty()){
+            systemUser.setUrl("");
+        }else {
+            String content = base64ImageUtils.encodeImageToBase64(file);
+            systemUser.setUrl("data:image/png;base64,"+content);
+        }
+
         String s=userService.addUser(systemUser);
         if("exist".equals(s)){
-            return "register";
+            model.addAttribute("log","用户名已存在！");
+            return "/register";
         }else{
-            return "login";
+            return "/login";
         }
 
     }
@@ -114,11 +118,13 @@ public class UserController {
 //        imgStr = encoder.encode(img);
 //        String re=JSON.toJSONString(img);
         return img;
-
     }
 
-    @GetMapping(value = "/index1")
-    private String index1(){
-        return "/index1";
+    @GetMapping(value="/get_user_num")
+    @ResponseBody
+    private String get_user_num(){
+
+       return null;
     }
+
 }
