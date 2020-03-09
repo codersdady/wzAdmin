@@ -1,4 +1,5 @@
 package com.wzAdmin.controller;
+import com.alibaba.fastjson.JSONArray;
 import com.wzAdmin.model.SystemUser;
 import com.wzAdmin.service.UserService;
 import com.wzAdmin.utils.Base64ImageUtils;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.xml.crypto.Data;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -114,17 +116,14 @@ public class UserController {
     @ResponseBody
     private String get_img(@RequestParam(value = "id")String id){
         String img=userService.getImgById(id);
-//        BASE64Encoder encoder = new BASE64Encoder();
-//        imgStr = encoder.encode(img);
-//        String re=JSON.toJSONString(img);
         return img;
     }
 
     @GetMapping(value="/get_user_num")
     @ResponseBody
-    private String get_user_num(){
-
-       return null;
+    private int[] get_user_num(){
+        int[] num=userService.getUserNumByData();
+        return num;
     }
 
 }

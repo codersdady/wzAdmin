@@ -31,12 +31,13 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @SneakyThrows
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        SystemUser systemUser =loginService.getUserByName(s);
+        SystemUser systemUser =loginService.loginUser(s);
         if(systemUser==null){
             throw new AuthenticationNotSupportedException("用户不存在");
         }else if(systemUser.getStatus()==SystemUser.Status.LOCKED){
             throw new LockedException("用户被锁定");
-
+        }else if(systemUser.getStatus()==SystemUser.Status.DISABLE){
+            throw new LockedException("用户被冻结");
         }
         LoginUser loginUser=new LoginUser();
         BeanUtils.copyProperties(systemUser,loginUser);

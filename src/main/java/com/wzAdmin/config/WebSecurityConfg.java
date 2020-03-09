@@ -92,6 +92,7 @@ public class WebSecurityConfg extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginPage("/login")
                 .loginProcessingUrl("/authentication")
+
 //                .defaultSuccessUrl("/success")
                 .successHandler(myLoginSuccessHandler)
                 .failureHandler(myLoginFailureHandler)

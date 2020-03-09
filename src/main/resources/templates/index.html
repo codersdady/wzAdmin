@@ -49,9 +49,9 @@
             <div class="container-fluid">
                 <div class="header-mobile-inner">
                     <a class="logo" href="/index">
-                        <img src="images/icon/logo.png"  alt="CoolAdmin"/>
+                        <img src="images/icon/logo.png" alt="CoolAdmin"/>
                     </a>
-                    <button  class="hamburger hamburger--slider" type="button">
+                    <button class="hamburger hamburger--slider" type="button">
                             <span class="hamburger-box">
                                 <span class="hamburger-inner"></span>
                             </span>
@@ -83,7 +83,7 @@
                             <i class="fas fa-table"></i>Tables</a>
                     </li>
                     <li>
-                        <a href="form.html">
+                        <a href="/account">
                             <i id="Forms_click1" class="far fa-check-square"></i>Forms</a>
                     </li>
                     <li>
@@ -423,10 +423,10 @@
                                                     // document.getElementById("updata").onclick=updataCookies();
                                                     // document.getElementById("username").innerHTML=document.cookie;
 
-                                                    var liname=document.title
+                                                    var liname = document.title
                                                     // alert(title)
-                                                    $("#"+liname+"_click").css("color","#4272d7")
-                                                    $("#"+liname+"_click1").css("color","#4272d7")
+                                                    $("#" + liname + "_click").css("color", "#4272d7")
+                                                    $("#" + liname + "_click1").css("color", "#4272d7")
                                                     // var a="#Dashboard_click"
                                                     // $(a).css("color","red")
                                                     function or_to_login() {
@@ -436,36 +436,33 @@
                                                     }
 
                                                     var user_id = 0
-                                                    getCookie()
 
-                                                    function getCookie() {
-                                                        var name = "username" + "=";
-                                                        var email = "email" + "=";
-                                                        var userid = "userid" + "="
-                                                        var ca = document.cookie.split(';');
-                                                        var un1 = "请登录";
-                                                        var un = "";
-                                                        var ue = "";
-                                                        var url = "";
-                                                        for (var i = 0; i < ca.length; i++) {
-                                                            var c = ca[i].trim();
-                                                            if (c.indexOf(name) == 0) {
-                                                                // document.getElementById("username").innerHTML = c.substring(name.length,c.length);
-                                                                un = c.substring(name.length, c.length);
-                                                                un1 = c.substring(name.length, c.length);
-                                                            } else if (c.indexOf(email) == 0) {
-                                                                // document.getElementById("useremail").innerHTML = c.substring(name.length,c.length);
-                                                                ue = c.substring(email.length, c.length);
-                                                            } else if (c.indexOf(userid) == 0) {
-                                                                user_id = c.substring(userid.length, c.length);
-                                                            }
+                                                    var name = "username" + "=";
+                                                    var email = "email" + "=";
+                                                    var userid = "userid" + "="
+                                                    var ca = document.cookie.split(';');
+                                                    var un1 = "请登录";
+                                                    var un = "";
+                                                    var ue = "";
+                                                    var url = "";
+                                                    for (var i = 0; i < ca.length; i++) {
+                                                        var c = ca[i].trim();
+                                                        if (c.indexOf(name) == 0) {
+                                                            // document.getElementById("username").innerHTML = c.substring(name.length,c.length);
+                                                            un = c.substring(name.length, c.length);
+                                                            un1 = c.substring(name.length, c.length);
+                                                        } else if (c.indexOf(email) == 0) {
+                                                            // document.getElementById("useremail").innerHTML = c.substring(name.length,c.length);
+                                                            ue = c.substring(email.length, c.length);
+                                                        } else if (c.indexOf(userid) == 0) {
+                                                            user_id = c.substring(userid.length, c.length);
                                                         }
-
-                                                        document.getElementById("username").innerHTML = un;
-                                                        document.getElementById("useremail").innerHTML = ue;
-                                                        document.getElementById("username1").innerHTML = un1;
-
                                                     }
+
+                                                    document.getElementById("username").innerHTML = un;
+                                                    document.getElementById("useremail").innerHTML = ue;
+                                                    document.getElementById("username1").innerHTML = un1;
+
 
                                                     if (user_id == 0) {
                                                         $("#url1").attr("src", "images/nologin.png");
@@ -478,7 +475,7 @@
                                                             data: {id: user_id},
                                                             contentType: "text",
                                                             success: function (data) {
-                                                                if (data == null || data.length == 0) {
+                                                                if (data == null || data.length == 0 || data.substring(0, 14) != "data:image/png") {
                                                                     $("#url1").attr("src", "images/nologin.png");
                                                                     $("#url2").attr("src", "images/nologin.png");
                                                                 } else {
@@ -535,36 +532,19 @@
             <div class="section__content section__content--p30">
                 <div class="container-fluid">
 
+
                     <div class="row m-t-25">
-                        <div class="col-sm-6 col-lg-3">
-                            <div class="overview-item overview-item--c1">
+
+                        <div class="col-sm-4 col-lg-3">
+                            <div class="overview-item overview-item--c2">
                                 <div class="overview__inner">
                                     <div class="overview-box clearfix">
                                         <div class="icon">
                                             <i class="zmdi zmdi-account-o"></i>
                                         </div>
                                         <div class="text">
-                                            <h2>10368</h2>
+                                            <h2 id="h2">0</h2>
                                             <span>用户数量</span>
-                                        </div>
-
-                                    </div>
-                                    <div class="overview-chart">
-                                        <canvas id="widgetChart1"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-lg-3">
-                            <div class="overview-item overview-item--c2">
-                                <div class="overview__inner">
-                                    <div class="overview-box clearfix">
-                                        <div class="icon">
-                                            <i class="zmdi zmdi-shopping-cart"></i>
-                                        </div>
-                                        <div class="text">
-                                            <h2>388,688</h2>
-                                            <span>items solid</span>
                                         </div>
                                     </div>
                                     <div class="overview-chart">
@@ -573,43 +553,17 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-6 col-lg-3">
-                            <div class="overview-item overview-item--c3">
-                                <div class="overview__inner">
-                                    <div class="overview-box clearfix">
-                                        <div class="icon">
-                                            <i class="zmdi zmdi-calendar-note"></i>
-                                        </div>
-                                        <div class="text">
-                                            <h2>1,086</h2>
-                                            <span>this week</span>
-                                        </div>
-                                    </div>
-                                    <div class="overview-chart">
-                                        <canvas id="widgetChart3"></canvas>
-                                    </div>
-                                </div>
+                        <!--                        <div class="col-sm-0 col-lg-2"></div>-->
+                        <div class="col-sm-8 col-lg-9">
+                            <h3 class="mb-3">折线图说明</h3>
+                            <div class="jumbotron">
+                                数据为当天所注册的所有用户，这样做的原因是注册人数少，这么做能好看点，本项目目前实现了用户数据的curd，功能较少。往后会作出后台管理系统。
                             </div>
                         </div>
-                        <div class="col-sm-6 col-lg-3">
-                            <div class="overview-item overview-item--c4">
-                                <div class="overview__inner">
-                                    <div class="overview-box clearfix">
-                                        <div class="icon">
-                                            <i class="zmdi zmdi-money"></i>
-                                        </div>
-                                        <div class="text">
-                                            <h2>$1,060,386</h2>
-                                            <span>total earnings</span>
-                                        </div>
-                                    </div>
-                                    <div class="overview-chart">
-                                        <canvas id="widgetChart4"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
                     </div>
+
+
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="au-card recent-report">
@@ -674,17 +628,19 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-9">
-                            <h2 class="title-1 m-b-25">Earnings By Items</h2>
+                            <h2 class="title-1 m-b-25">所有用户</h2>
                             <div class="table-responsive table--no-card m-b-40">
                                 <table class="table table-borderless table-striped table-earning">
                                     <thead>
                                     <tr>
-                                        <th>date</th>
-                                        <th>order ID</th>
-                                        <th>name</th>
-                                        <th class="text-right">price</th>
-                                        <th class="text-right">quantity</th>
-                                        <th class="text-right">total</th>
+                                        <th>id</th>
+                                        <th>生日</th>
+                                        <th>密码</th>
+                                        <th>姓名</th>
+                                        <th>角色权限</th>
+                                        <th>用户状态</th>
+                                        <th>邮箱</th>
+                                        <th>创建日期</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -802,268 +758,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="au-card au-card--no-shadow au-card--no-pad m-b-40">
-                                <div class="au-card-title" style="background-image:url('images/bg-title-01.jpg');">
-                                    <div class="bg-overlay bg-overlay--blue"></div>
-                                    <h3>
-                                        <i class="zmdi zmdi-account-calendar"></i>26 April, 2018</h3>
-                                    <button class="au-btn-plus">
-                                        <i class="zmdi zmdi-plus"></i>
-                                    </button>
-                                </div>
-                                <div class="au-task js-list-load">
-                                    <div class="au-task__title">
-                                        <p>Tasks for John Doe</p>
-                                    </div>
-                                    <div class="au-task-list js-scrollbar3">
-                                        <div class="au-task__item au-task__item--danger">
-                                            <div class="au-task__item-inner">
-                                                <h5 class="task">
-                                                    <a href="#">Meeting about plan for Admin Template 2018</a>
-                                                </h5>
-                                                <span class="time">10:00 AM</span>
-                                            </div>
-                                        </div>
-                                        <div class="au-task__item au-task__item--warning">
-                                            <div class="au-task__item-inner">
-                                                <h5 class="task">
-                                                    <a href="#">Create new task for Dashboard</a>
-                                                </h5>
-                                                <span class="time">11:00 AM</span>
-                                            </div>
-                                        </div>
-                                        <div class="au-task__item au-task__item--primary">
-                                            <div class="au-task__item-inner">
-                                                <h5 class="task">
-                                                    <a href="#">Meeting about plan for Admin Template 2018</a>
-                                                </h5>
-                                                <span class="time">02:00 PM</span>
-                                            </div>
-                                        </div>
-                                        <div class="au-task__item au-task__item--success">
-                                            <div class="au-task__item-inner">
-                                                <h5 class="task">
-                                                    <a href="#">Create new task for Dashboard</a>
-                                                </h5>
-                                                <span class="time">03:30 PM</span>
-                                            </div>
-                                        </div>
-                                        <div class="au-task__item au-task__item--danger js-load-item">
-                                            <div class="au-task__item-inner">
-                                                <h5 class="task">
-                                                    <a href="#">Meeting about plan for Admin Template 2018</a>
-                                                </h5>
-                                                <span class="time">10:00 AM</span>
-                                            </div>
-                                        </div>
-                                        <div class="au-task__item au-task__item--warning js-load-item">
-                                            <div class="au-task__item-inner">
-                                                <h5 class="task">
-                                                    <a href="#">Create new task for Dashboard</a>
-                                                </h5>
-                                                <span class="time">11:00 AM</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="au-task__footer">
-                                        <button class="au-btn au-btn-load js-load-btn">load more</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="au-card au-card--no-shadow au-card--no-pad m-b-40">
-                                <div class="au-card-title" style="background-image:url('images/bg-title-02.jpg');">
-                                    <div class="bg-overlay bg-overlay--blue"></div>
-                                    <h3>
-                                        <i class="zmdi zmdi-comment-text"></i>New Messages</h3>
-                                    <button class="au-btn-plus">
-                                        <i class="zmdi zmdi-plus"></i>
-                                    </button>
-                                </div>
-                                <div class="au-inbox-wrap js-inbox-wrap">
-                                    <div class="au-message js-list-load">
-                                        <div class="au-message__noti">
-                                            <p>You Have
-                                                <span>2</span>
 
-                                                new messages
-                                            </p>
-                                        </div>
-                                        <div class="au-message-list">
-                                            <div class="au-message__item unread">
-                                                <div class="au-message__item-inner">
-                                                    <div class="au-message__item-text">
-                                                        <div class="avatar-wrap">
-                                                            <div class="avatar">
-                                                                <img src="images/icon/avatar-02.jpg" alt="John Smith">
-                                                            </div>
-                                                        </div>
-                                                        <div class="text">
-                                                            <h5 class="name">John Smith</h5>
-                                                            <p>Have sent a photo</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="au-message__item-time">
-                                                        <span>12 Min ago</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="au-message__item unread">
-                                                <div class="au-message__item-inner">
-                                                    <div class="au-message__item-text">
-                                                        <div class="avatar-wrap online">
-                                                            <div class="avatar">
-                                                                <img src="images/icon/avatar-03.jpg"
-                                                                     alt="Nicholas Martinez">
-                                                            </div>
-                                                        </div>
-                                                        <div class="text">
-                                                            <h5 class="name">Nicholas Martinez</h5>
-                                                            <p>You are now connected on message</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="au-message__item-time">
-                                                        <span>11:00 PM</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="au-message__item">
-                                                <div class="au-message__item-inner">
-                                                    <div class="au-message__item-text">
-                                                        <div class="avatar-wrap online">
-                                                            <div class="avatar">
-                                                                <img src="images/icon/avatar-04.jpg"
-                                                                     alt="Michelle Sims">
-                                                            </div>
-                                                        </div>
-                                                        <div class="text">
-                                                            <h5 class="name">Michelle Sims</h5>
-                                                            <p>Lorem ipsum dolor sit amet</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="au-message__item-time">
-                                                        <span>Yesterday</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="au-message__item">
-                                                <div class="au-message__item-inner">
-                                                    <div class="au-message__item-text">
-                                                        <div class="avatar-wrap">
-                                                            <div class="avatar">
-                                                                <img src="images/icon/avatar-05.jpg"
-                                                                     alt="Michelle Sims">
-                                                            </div>
-                                                        </div>
-                                                        <div class="text">
-                                                            <h5 class="name">Michelle Sims</h5>
-                                                            <p>Purus feugiat finibus</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="au-message__item-time">
-                                                        <span>Sunday</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="au-message__item js-load-item">
-                                                <div class="au-message__item-inner">
-                                                    <div class="au-message__item-text">
-                                                        <div class="avatar-wrap online">
-                                                            <div class="avatar">
-                                                                <img src="images/icon/avatar-04.jpg"
-                                                                     alt="Michelle Sims">
-                                                            </div>
-                                                        </div>
-                                                        <div class="text">
-                                                            <h5 class="name">Michelle Sims</h5>
-                                                            <p>Lorem ipsum dolor sit amet</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="au-message__item-time">
-                                                        <span>Yesterday</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="au-message__item js-load-item">
-                                                <div class="au-message__item-inner">
-                                                    <div class="au-message__item-text">
-                                                        <div class="avatar-wrap">
-                                                            <div class="avatar">
-                                                                <img src="images/icon/avatar-05.jpg"
-                                                                     alt="Michelle Sims">
-                                                            </div>
-                                                        </div>
-                                                        <div class="text">
-                                                            <h5 class="name">Michelle Sims</h5>
-                                                            <p>Purus feugiat finibus</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="au-message__item-time">
-                                                        <span>Sunday</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="au-message__footer">
-                                            <button class="au-btn au-btn-load js-load-btn">load more</button>
-                                        </div>
-                                    </div>
-                                    <div class="au-chat">
-                                        <div class="au-chat__title">
-                                            <div class="au-chat-info">
-                                                <div class="avatar-wrap online">
-                                                    <div class="avatar avatar--small">
-                                                        <img src="images/icon/avatar-02.jpg" alt="John Smith">
-                                                    </div>
-                                                </div>
-                                                <span class="nick">
-                                                        <a href="#">John Smith</a>
-                                                    </span>
-                                            </div>
-                                        </div>
-                                        <div class="au-chat__content">
-                                            <div class="recei-mess-wrap">
-                                                <span class="mess-time">12 Min ago</span>
-                                                <div class="recei-mess__inner">
-                                                    <div class="avatar avatar--tiny">
-                                                        <img src="images/icon/avatar-02.jpg" alt="John Smith">
-                                                    </div>
-                                                    <div class="recei-mess-list">
-                                                        <div class="recei-mess">Lorem ipsum dolor sit amet, consectetur
-                                                            adipiscing elit non iaculis
-                                                        </div>
-                                                        <div class="recei-mess">Donec tempor, sapien ac viverra</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="send-mess-wrap">
-                                                <span class="mess-time">30 Sec ago</span>
-                                                <div class="send-mess__inner">
-                                                    <div class="send-mess-list">
-                                                        <div class="send-mess">Lorem ipsum dolor sit amet, consectetur
-                                                            adipiscing elit non iaculis
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="au-chat-textfield">
-                                            <form class="au-form-icon">
-                                                <input class="au-input au-input--full au-input--h65" type="text"
-                                                       placeholder="Type a message">
-                                                <button class="au-input-icon">
-                                                    <i class="zmdi zmdi-camera"></i>
-                                                </button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <div th:fragment="footright" class="row">
                         <div class="col-md-12">
                             <div class="copyright">

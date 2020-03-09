@@ -13,6 +13,7 @@ public class SystemUser implements Serializable {
     private int status;
     private String email;
     private String url;
+    private String ucreate;
 
 
     public interface Status{

@@ -16,11 +16,13 @@ private UserDao userDao;
 private UserMapper userMapper;
 
 
+
     @Test
     void contextLoads() {
 //        userDao.getUserNum();
 //        System.out.println("first"+userDao.selectUser(1));
 //        System.out.println("second"+userDao.selectUser(1));
+
     }
 
 

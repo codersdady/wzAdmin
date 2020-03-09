@@ -41,5 +41,8 @@ public class UserService{
         String img=userDao.getImgById(id);
         return img;
     }
+    public int[] getUserNumByData(){
+        return userDao.getUserNumByData();
+    }
 
 }

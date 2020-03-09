@@ -25,8 +25,8 @@ public class LoginService {
 
     @Autowired
     private UserDao userDao;
-    public SystemUser getUserByName(String name){
-       SystemUser systemUser=userDao.getUserByName(name);
+    public SystemUser loginUser(String name){
+       SystemUser systemUser=userDao.loginUser(name);
        return systemUser;
     }
 

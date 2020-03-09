@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.*;
 
 
 public interface UserMapper {
-    @Insert("INSERT INTO User (id,birthday,password,name,role,status,email,url) VALUES (#{user.id},#{user.birthday},#{user.password},#{user.name},#{user.role},#{user.status},#{user.email},#{user.url})")
+    @Insert("INSERT INTO User (id,birthday,password,name,role,status,email,url,ucreate) VALUES (#{user.id},#{user.birthday},#{user.password},#{user.name},#{user.role},#{user.status},#{user.email},#{user.url}, #{user.ucreate})")
     int addUser(@Param(value = "user")SystemUser systemUser);
 
     @Select("select count(*) from User where name = #{name} ")
@@ -24,4 +24,16 @@ public interface UserMapper {
 
     @Update("UPDATE User SET name = #{user.name}, password=#{user.password}, birthday=#{user.birthday}, email=#{user.email} where id=#{user.id}")
     int updateUserById(@Param(value = "user")SystemUser systemUser);
+
+    @Select("select count(*) from User where ucreate = #{ucreate}")
+    int selectUserNumByData(@Param(value = "ucreate")String ucreate);
+
+    @Select("select count(*) from User")
+    int selectUserNum();
+
+    @Update("update User set status = 2 where name=#{name}")
+    int loginUser(String name);
+
+    @Update("update User set status = 1 where id=#{id}")
+    int logoutUser(String id);
 }
