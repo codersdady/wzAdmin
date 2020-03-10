@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.*;
 
 
 public interface UserMapper {
-    @Insert("INSERT INTO User (id,birthday,password,name,role,status,email,url,ucreate) VALUES (#{user.id},#{user.birthday},#{user.password},#{user.name},#{user.role},#{user.status},#{user.email},#{user.url}, #{user.ucreate})")
+    @Insert("INSERT INTO User (id,birthday,password,name,role,status,email,url,ucreate,sex) VALUES (#{user.id},#{user.birthday},#{user.password},#{user.name},#{user.role},#{user.status},#{user.email},#{user.url}, #{user.ucreate},#{user.sex})")
     int addUser(@Param(value = "user")SystemUser systemUser);
 
     @Select("select count(*) from User where name = #{name} ")
@@ -36,4 +36,10 @@ public interface UserMapper {
 
     @Update("update User set status = 1 where id=#{id}")
     int logoutUser(String id);
+
+    @Select("select count(*) from User where sex = 1")
+    int selectUserSex();
+
+    @Select("select count(*) from User where sex = #{sex} and ucreate = #{ucreate}")
+    int selectUserDataSex(String ucreate,String sex);
 }

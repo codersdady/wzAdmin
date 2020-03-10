@@ -14,10 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.xml.crypto.Data;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 @Controller
 public class UserController {
@@ -37,6 +34,7 @@ public class UserController {
                               @RequestParam(value = "password") String password,
                               @RequestParam(value = "form_datetime") String birthday,
                               @RequestParam(value = "email") String email,
+                              @RequestParam(value = "sex")String sex,
                               @RequestParam(value = "file") MultipartFile file,
                               Model model,
                               HttpServletRequest request){
@@ -60,6 +58,7 @@ public class UserController {
         systemUser.setPassword(password);
         systemUser.setBirthday(String.valueOf(birthday));
         systemUser.setEmail(email);
+        systemUser.setSex(sex);
         if(file==null||file.isEmpty()){
             systemUser.setUrl("");
         }else {
@@ -125,5 +124,20 @@ public class UserController {
         int[] num=userService.getUserNumByData();
         return num;
     }
+
+    @GetMapping(value = "/get_sex")
+    @ResponseBody
+    private double[] get_sex(){
+        double[] num=userService.getUserSex();
+        return num;
+    }
+
+    @GetMapping(value="/get_data_report")
+    @ResponseBody
+    private List<int[]> getReport(){
+        List<int[]> list=userService.getDataReport();
+        return list;
+    }
+
 
 }

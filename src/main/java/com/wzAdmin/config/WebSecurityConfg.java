@@ -75,6 +75,8 @@ public class WebSecurityConfg extends WebSecurityConfigurerAdapter {
                 .antMatchers("/user_register").permitAll()
                 .antMatchers("/update_user").hasAnyAuthority("USER_UPDATE")
                 .antMatchers("/get_user_num").permitAll()
+                .antMatchers("/get_sex").permitAll()
+                .antMatchers("/get_data_report").permitAll()
 //                .antMatchers("/index2").permitAll()
 //                .antMatchers("/index.html").hasRole("ADMIN")
 //                .antMatchers("/index2.html").hasAnyRole("USER","ADMIN")

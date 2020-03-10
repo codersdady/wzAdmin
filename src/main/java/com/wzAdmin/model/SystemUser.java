@@ -8,6 +8,7 @@ public class SystemUser implements Serializable {
     private String id;
     private String birthday;
     private String password;
+    private String sex;
     private String name;
     private String role;
     private int status;

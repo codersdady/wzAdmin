@@ -99,9 +99,51 @@
     const brandProduct = 'rgba(0,181,233,0.8)'
     const brandService = 'rgba(0,173,95,0.8)'
 
-    var elements = 10
-    var data1 = [52, 60, 55, 50, 65, 80, 57, 70, 105, 115]
-    var data2 = [102, 70, 80, 100, 56, 53, 80, 75, 65, 90]
+    var a,b;
+    $.ajax({
+      async:false,
+      type: "get",
+      url: "/get_data_report",
+      contentType: "json",
+      success: function (data) {
+        a=data[0]
+        b=data[1]
+      }
+    })
+
+    var elements = 5
+    var div=document.getElementById('man_num');
+    var di=document.getElementById('man_span');
+    if(a[4]>a[3]){
+      div.classList.add("zmdi-long-arrow-up")
+      di.classList.add("incre")
+      $("#man_num").html((a[4]-a[3])/a[3]*100+"%")
+
+    }else if(a[4]<a[3]){
+      div.classList.add("zmdi-long-arrow-down")
+      di.classList.add("decre")
+      $("#man_num").html((a[3]-a[4])/a[3]*100+"%")
+    }else {
+      $("#man_num").html("0%")
+    }
+
+    div = document.getElementById('woman_num');
+    di=document.getElementById('woman_span');
+    if(b[4]>b[3]){
+      div.classList.add("zmdi-long-arrow-up");
+      di.classList.add("incre")
+      $("#woman_num").html((b[4]-b[3])/b[3]*100+"%")
+    }else if(b[4]<b[3]){
+      div.classList.add("zmdi-long-arrow-down")
+      di.classList.add("decre")
+      $("#woman_num").html((b[3]-b[4])/b[3]*100+"%")
+    }else {
+      $("#woman_num").html("0%")
+    }
+
+
+    var data1 = [a[0],a[1],a[2],a[3],a[4]]
+    var data2 = [b[0],b[1],b[2],b[3],b[4]]
 
     var ctx = document.getElementById("recent-rep-chart");
     if (ctx) {
@@ -109,7 +151,7 @@
       var myChart = new Chart(ctx, {
         type: 'line',
         data: {
-          labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', ''],
+          labels: [ '四天前', '三天前', '前日', '昨日', ''],
           datasets: [
             {
               label: 'My First dataset',
@@ -153,7 +195,7 @@
                 beginAtZero: true,
                 maxTicksLimit: 5,
                 stepSize: 50,
-                max: 150,
+                max: 10,
                 fontFamily: "Poppins",
                 fontSize: 12
               },
@@ -182,13 +224,24 @@
     var ctx = document.getElementById("percent-chart");
     if (ctx) {
       ctx.height = 280;
+      $.ajax({
+        async:false,
+        type: "get",
+        url: "/get_sex",
+        contentType: "json",
+        success: function (data) {
+
+          a=data[0]
+          b=data[1]
+        }
+      })
       var myChart = new Chart(ctx, {
         type: 'doughnut',
         data: {
           datasets: [
             {
               label: "My First dataset",
-              data: [60, 40],
+              data: [a, b],
               backgroundColor: [
                 '#00b5e9',
                 '#fa4251'
@@ -207,8 +260,8 @@
             }
           ],
           labels: [
-            'Products',
-            'Services'
+            '男',
+            '女'
           ]
         },
         options: {

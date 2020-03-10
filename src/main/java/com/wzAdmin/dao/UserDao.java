@@ -147,5 +147,67 @@ public class UserDao {
 
     }
 
+    public double[] selectUserSex(){
+
+        double[] re=new double[2];
+        double a=userMapper.selectUserNum();
+        double b=userMapper.selectUserSex();
+        re[0]=(double) Math.round((b/a)*100 * 100) / 100;
+        re[1]= (double) Math.round((100-re[0]) * 100) / 100;
+        return re;
+    }
+
+    public List<int[]> selectDataReport(){
+        int[] man=new int[5];
+        int[] woman=new int[5];
+        int a=0,b=0;
+        String data="0";
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+
+        Calendar calendar=Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY,-(4*24));
+        data=df.format(calendar.getTime());
+        a=userMapper.selectUserDataSex(data,"1");
+        b=userMapper.selectUserDataSex(data,"2");
+        man[0]=a;
+        woman[0]=b;
+
+        calendar=Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY,-(3*24));
+        data=df.format(calendar.getTime());
+        a=userMapper.selectUserDataSex(data,"1");
+        b=userMapper.selectUserDataSex(data,"2");
+        man[1]=a;
+        woman[1]=b;
+
+        calendar=Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY,-(2*24));
+        data=df.format(calendar.getTime());
+        a=userMapper.selectUserDataSex(data,"1");
+        b=userMapper.selectUserDataSex(data,"2");
+        man[2]=a;
+        woman[2]=b;
+
+        calendar=Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY,-24);
+        data=df.format(calendar.getTime());
+        a=userMapper.selectUserDataSex(data,"1");
+        b=userMapper.selectUserDataSex(data,"2");
+        man[3]=a;
+        woman[3]=b;
+
+        data=df.format(new Date());
+        a=userMapper.selectUserDataSex(data,"1");
+        b=userMapper.selectUserDataSex(data,"2");
+        man[4]=a;
+        woman[4]=b;
+
+        List<int[]> list=new ArrayList<>();
+        list.add(man);
+        list.add(woman);
+
+        return list;
+    }
+
 
 }

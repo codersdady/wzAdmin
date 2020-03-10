@@ -535,7 +535,7 @@
 
                     <div class="row m-t-25">
 
-                        <div class="col-sm-4 col-lg-3">
+                        <div class="col-sm-12 col-lg-3">
                             <div class="overview-item overview-item--c2">
                                 <div class="overview__inner">
                                     <div class="overview-box clearfix">
@@ -554,7 +554,7 @@
                             </div>
                         </div>
                         <!--                        <div class="col-sm-0 col-lg-2"></div>-->
-                        <div class="col-sm-8 col-lg-9">
+                        <div class="col-sm-12 col-lg-9">
                             <h3 class="mb-3">折线图说明</h3>
                             <div class="jumbotron">
                                 数据为当天所注册的所有用户，这样做的原因是注册人数少，这么做能好看点，本项目目前实现了用户数据的curd，功能较少。往后会作出后台管理系统。
@@ -568,28 +568,28 @@
                         <div class="col-lg-6">
                             <div class="au-card recent-report">
                                 <div class="au-card-inner">
-                                    <h3 class="title-2">recent reports</h3>
+                                    <h3 class="title-2">最近人数报告</h3>
                                     <div class="chart-info">
                                         <div class="chart-info__left">
                                             <div class="chart-note">
                                                 <span class="dot dot--blue"></span>
-                                                <span>products</span>
+                                                <span>注册用户：女</span>
                                             </div>
                                             <div class="chart-note mr-0">
                                                 <span class="dot dot--green"></span>
-                                                <span>services</span>
+                                                <span>注册用户：男</span>
                                             </div>
                                         </div>
                                         <div class="chart-info__right">
                                             <div class="chart-statis">
-                                                    <span class="index incre">
-                                                        <i class="zmdi zmdi-long-arrow-up"></i>25%</span>
-                                                <span class="label">products</span>
+                                                    <span id="man_span" class="index ">
+                                                        <i id="man_num" class="zmdi"></i></span>
+                                                <span class="label">较昨日：男</span>
                                             </div>
                                             <div class="chart-statis mr-0">
-                                                    <span class="index decre">
-                                                        <i class="zmdi zmdi-long-arrow-down"></i>10%</span>
-                                                <span class="label">services</span>
+                                                    <span id="woman_span" class="index ">
+                                                        <i id="woman_num" class="zmdi"></i></span>
+                                                <span class="label">较昨日：女</span>
                                             </div>
                                         </div>
                                     </div>
@@ -602,17 +602,17 @@
                         <div class="col-lg-6">
                             <div class="au-card chart-percent-card">
                                 <div class="au-card-inner">
-                                    <h3 class="title-2 tm-b-5">char by %</h3>
+                                    <h3 class="title-2 tm-b-5">用户男女比例</h3>
                                     <div class="row no-gutters">
                                         <div class="col-xl-6">
                                             <div class="chart-note-wrap">
                                                 <div class="chart-note mr-0 d-block">
                                                     <span class="dot dot--blue"></span>
-                                                    <span>products</span>
+                                                    <span>已注册用户：男</span>
                                                 </div>
                                                 <div class="chart-note mr-0 d-block">
                                                     <span class="dot dot--red"></span>
-                                                    <span>services</span>
+                                                    <span>已注册用户：女</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -634,9 +634,10 @@
                                     <thead>
                                     <tr>
                                         <th>id</th>
+                                        <th>姓名</th>
+                                        <th>性别</th>
                                         <th>生日</th>
                                         <th>密码</th>
-                                        <th>姓名</th>
                                         <th>角色权限</th>
                                         <th>用户状态</th>
                                         <th>邮箱</th>
@@ -645,68 +646,15 @@
                                     </thead>
                                     <tbody>
                                     <tr>
-                                        <td>2018-09-29 05:57</td>
-                                        <td>100398</td>
-                                        <td>iPhone X 64Gb Grey</td>
-                                        <td class="text-right">$999.00</td>
-                                        <td class="text-right">1</td>
-                                        <td class="text-right">$999.00</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2018-09-28 01:22</td>
-                                        <td>100397</td>
-                                        <td>Samsung S8 Black</td>
-                                        <td class="text-right">$756.00</td>
-                                        <td class="text-right">1</td>
-                                        <td class="text-right">$756.00</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2018-09-27 02:12</td>
-                                        <td>100396</td>
-                                        <td>Game Console Controller</td>
-                                        <td class="text-right">$22.00</td>
-                                        <td class="text-right">2</td>
-                                        <td class="text-right">$44.00</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2018-09-26 23:06</td>
-                                        <td>100395</td>
-                                        <td>iPhone X 256Gb Black</td>
-                                        <td class="text-right">$1199.00</td>
-                                        <td class="text-right">1</td>
-                                        <td class="text-right">$1199.00</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2018-09-25 19:03</td>
-                                        <td>100393</td>
-                                        <td>USB 3.0 Cable</td>
-                                        <td class="text-right">$10.00</td>
-                                        <td class="text-right">3</td>
-                                        <td class="text-right">$30.00</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2018-09-29 05:57</td>
-                                        <td>100392</td>
-                                        <td>Smartwatch 4.0 LTE Wifi</td>
-                                        <td class="text-right">$199.00</td>
-                                        <td class="text-right">6</td>
-                                        <td class="text-right">$1494.00</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2018-09-24 19:10</td>
-                                        <td>100391</td>
-                                        <td>Camera C430W 4k</td>
-                                        <td class="text-right">$699.00</td>
-                                        <td class="text-right">1</td>
-                                        <td class="text-right">$699.00</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2018-09-22 00:43</td>
-                                        <td>100393</td>
-                                        <td>USB 3.0 Cable</td>
-                                        <td class="text-right">$10.00</td>
-                                        <td class="text-right">3</td>
-                                        <td class="text-right">$30.00</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
                                     </tr>
                                     </tbody>
                                 </table>

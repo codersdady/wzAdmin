@@ -11,9 +11,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 public class UserService{
@@ -43,6 +41,13 @@ public class UserService{
     }
     public int[] getUserNumByData(){
         return userDao.getUserNumByData();
+    }
+    public double[] getUserSex(){
+        return userDao.selectUserSex();
+    }
+    public List<int[]> getDataReport(){
+        List<int[]> list=userDao.selectDataReport();
+        return list;
     }
 
 }
