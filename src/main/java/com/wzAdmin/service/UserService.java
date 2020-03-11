@@ -13,6 +13,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.*;
 
 @Service
@@ -40,7 +41,9 @@ public class UserService{
         return resule;
     }
     public String getImgById(String id){
+        long a= System.currentTimeMillis();
         String img=userDao.getImgById(id);
+        System.out.println(System.currentTimeMillis()-a+"毫秒");
         return img;
     }
     public int[] getUserNumByData(){
@@ -68,6 +71,12 @@ public class UserService{
             list1.add(reportNum);
         }
         return list1;
+    }
+    public void close_user(String id){
+        userDao.close_user(id);
+    }
+    public void up_user(String id){
+        userDao.up_user(id);
     }
 
 }

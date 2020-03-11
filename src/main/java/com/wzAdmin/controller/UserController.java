@@ -1,8 +1,10 @@
 package com.wzAdmin.controller;
 import com.alibaba.fastjson.JSONArray;
+import com.wzAdmin.model.ReportNum;
 import com.wzAdmin.model.SystemUser;
 import com.wzAdmin.service.UserService;
 import com.wzAdmin.utils.Base64ImageUtils;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -137,6 +139,27 @@ public class UserController {
     private List<int[]> getReport(){
         List<int[]> list=userService.getDataReport();
         return list;
+    }
+
+    @GetMapping(value = "/close_user")
+    private String close_user(@RequestParam(value = "id") String id,
+                              Model model){
+        userService.close_user(id);
+        List<SystemUser> list=userService.getAllUser();
+        List<ReportNum> reportNumList=userService.getReport();
+        model.addAttribute("UserList",list);
+        model.addAttribute("Report",reportNumList);
+        return "/index";
+    }
+    @GetMapping(value = "/up_user")
+    private String up_user(@RequestParam(value = "id") String id,
+                              Model model){
+        userService.up_user(id);
+        List<SystemUser> list=userService.getAllUser();
+        List<ReportNum> reportNumList=userService.getReport();
+        model.addAttribute("UserList",list);
+        model.addAttribute("Report",reportNumList);
+        return "/index";
     }
 
 

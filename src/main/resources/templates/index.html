@@ -37,6 +37,7 @@
     <!--    <script src="js/index.js" type="application/javascript"></script>-->
     <!-- Jquery JS-->
     <script src="vendor/jquery-3.2.1.min.js"></script>
+    <script src="js/jquery.cookie.js"></script>
 
 </head>
 
@@ -557,7 +558,9 @@
                         <div class="col-sm-12 col-lg-9">
                             <h3 class="mb-3">折线图说明</h3>
                             <div class="jumbotron">
-                                数据为当天所注册的所有用户，这样做的原因是注册人数少，这么做能好看点，本项目目前实现了用户数据的curd，功能较少。往后会作出后台管理系统。
+                                目前项目的功能有：用户的登录；头像存储；用户个人信息修改；前四日的注册用户显示；
+                                男、女注册人数走向和注册人数对比；权限中只有root可以冻结其他用户（SpringSecurity）;
+                                显示最活跃的前十人；每个账号只能登录一个，除了主动退出，还设置了session过期校验（5分钟）。
                             </div>
                         </div>
 
@@ -642,24 +645,58 @@
                                         <th>用户状态</th>
                                         <th>邮箱</th>
                                         <th>创建日期</th>
+                                        <th class="text-center">操作</th>
                                     </tr>
                                     </thead>
                                     <tbody>
+
                                     <tr th:each="user:${UserList}">
                                         <td th:text="${user.id}"></td>
                                         <td th:text="${user.name}"></td>
                                         <td th:text="${user.sex}==1?'男':'女'"></td>
                                         <td th:text="${user.birthday}"></td>
                                         <td th:text="${user.password}"></td>
-                                        <td th:text="${user.role}"></td>
+                                        <td id="user_root" th:text="${user.role}"></td>
                                         <td th:text="${user.status}==0?'用户已冻结':(${user.status}==1?'离线':'在线')"></td>
                                         <td th:text="${user.email}"></td>
                                         <td th:text="${user.ucreate}"></td>
+                                        <td class="text-center">
+                                            <div th:unless="${#strings.contains(user.role,'root')}" th:switch="${user.status}">
+                                                <a name="root_href" disabled th:case="'0'" class="btn btn-warning" th:href="@{'up_user?id='+${user.id}}">解冻</a>
+                                                <a name="root_href" th:case="*" class="btn btn-warning" th:href="@{'close_user?id='+${user.id}}">冻结账户</a>
+                                            </div>
+
+
+                                        </td>
+
                                     </tr>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
+
+                        <script type="text/javascript">
+                            function cookie(){
+
+                                if ($.cookie('root')!='true'){
+                                    // var change_cancel = document.getElementById("root_id");
+                                    // change_cancel.classList.add("disabled")
+                                    tabName=document.getElementsByName("root_href");
+                                    var len = tabName.length;
+                                    //遍历table中的td，并设置td中的内容颜色
+                                    for(var i=0;i<len;i++)
+                                    {
+                                        tabName[i].classList.add("disabled")
+                                    }
+
+                                }
+                            }
+                            cookie()
+
+
+
+
+                        </script>
                         <div class="col-lg-3">
                             <h2 class="title-1 m-b-25">用户活跃排行</h2>
                             <div class="au-card au-card--bg-blue au-card-top-countries m-b-40">
@@ -716,10 +753,12 @@
 <script src="vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
 <script src="vendor/chartjs/Chart.bundle.min.js"></script>
 <script src="vendor/select2/select2.min.js">
+
 </script>
 
 <!-- Main JS-->
 <script src="js/main.js"></script>
+
 
 </body>
 

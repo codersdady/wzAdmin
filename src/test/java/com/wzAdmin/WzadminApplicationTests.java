@@ -18,14 +18,14 @@ import java.util.Map;
 @SpringBootTest
 class WzadminApplicationTests {
 
-@Autowired
-private UserDao userDao;
-@Autowired
-private UserMapper userMapper;
-@Autowired
-private UserNumDao userNumDao;
-@Autowired
-private UserService userService;
+    @Autowired
+    private UserDao userDao;
+    @Autowired
+    private UserMapper userMapper;
+    @Autowired
+    private UserNumDao userNumDao;
+    @Autowired
+    private UserService userService;
 
 
     @Test
@@ -37,11 +37,11 @@ private UserService userService;
 
 //        int a=userNumDao.addNum("af4aee46-2d82-41ac-ac8d-8f2fd7974baa");
 //        int b=userNumDao.addNum("af4aee46-2d82-41ac-ac8d-8f2fd7974baa");
-        List<ReportNum> list=userService.getReport();
-        System.out.println(list);
+        System.out.println(userService.getImgById("c82c7f02-4547-45c6-895c-7ea6eeb7b8aa"));
+        userService.getImgById("c82c7f02-4547-45c6-895c-7ea6eeb7b8aa");
+
 
     }
-
 
 
 }

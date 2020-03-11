@@ -47,4 +47,10 @@ public interface UserMapper {
 
     @Select("select * from User")
     List<SystemUser> selectAllUser();
+
+    @Update("update User set status = 0 where id=#{id}")
+    int close_user(String id);
+
+    @Update("update User set status = 1 where id=#{id}")
+    int up_user(String id);
 }

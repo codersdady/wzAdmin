@@ -216,5 +216,13 @@ public class UserDao {
         List<SystemUser> list=userMapper.selectAllUser();
         return list;
     }
+    public int close_user(String id){
+        userMapper.close_user(id);
+        return 1;
+    }
+    public int up_user(String id){
+        userMapper.up_user(id);
+        return 1;
+    }
 
 }

@@ -28,7 +28,7 @@
       var myChart = new Chart(ctx, {
         type: 'line',
         data: {
-          labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+          labels: ['四天前', '三天前', '两天前', '昨日', '今日'],
           type: 'line',
           datasets: [{
             data: [a,b,c,d,e],

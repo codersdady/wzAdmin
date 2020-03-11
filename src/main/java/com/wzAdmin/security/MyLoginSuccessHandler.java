@@ -34,6 +34,10 @@ public class MyLoginSuccessHandler extends SavedRequestAwareAuthenticationSucces
         Cookie cookie=new Cookie("userid",systemUser.getId());
         Cookie cookie1=new Cookie("username",systemUser.getName());
         Cookie cookie2=new Cookie("email",systemUser.getEmail());
+        if(systemUser.getRole().contains("root")){
+            Cookie cookie3=new Cookie("root","true");
+        }
+
         request.getSession().setAttribute("userid",systemUser.getId());
 //        Cookie cookie3=new Cookie("url",systemUser.getUrl());
         response.addCookie(cookie);

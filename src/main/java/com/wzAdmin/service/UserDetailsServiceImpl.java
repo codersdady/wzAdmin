@@ -45,7 +45,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 //        authorities.add(new SimpleGrantedAuthority(systemUser.getRole()));
         Collection<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 
-        authorities.add(new SimpleGrantedAuthority(systemUser.getRole()));
+        String [] spString = systemUser.getRole().split("\\s+");
+        for(String a:spString){
+            authorities.add(new SimpleGrantedAuthority(a));
+        }
 
         loginUser.setList(authorities);
         return loginUser;

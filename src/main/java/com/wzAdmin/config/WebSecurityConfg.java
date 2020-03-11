@@ -77,6 +77,7 @@ public class WebSecurityConfg extends WebSecurityConfigurerAdapter {
                 .antMatchers("/get_user_num").permitAll()
                 .antMatchers("/get_sex").permitAll()
                 .antMatchers("/get_data_report").permitAll()
+                .antMatchers("/close_user").hasAnyAuthority("root")
 //                .antMatchers("/index2").permitAll()
 //                .antMatchers("/index.html").hasRole("ADMIN")
 //                .antMatchers("/index2.html").hasAnyRole("USER","ADMIN")
