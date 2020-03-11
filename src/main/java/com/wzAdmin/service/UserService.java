@@ -3,6 +3,8 @@ package com.wzAdmin.service;
 
 
 import com.wzAdmin.dao.UserDao;
+import com.wzAdmin.dao.UserNumDao;
+import com.wzAdmin.model.ReportNum;
 import com.wzAdmin.model.SystemUser;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,8 @@ import java.util.*;
 public class UserService{
     @Autowired
     private UserDao userDao;
+    @Autowired
+    private UserNumDao userNumDao;
 
 
     public String addUser(SystemUser systemUser){
@@ -48,6 +52,22 @@ public class UserService{
     public List<int[]> getDataReport(){
         List<int[]> list=userDao.selectDataReport();
         return list;
+    }
+    public List<SystemUser> getAllUser(){
+        List<SystemUser> list=userDao.selectAllUser();
+        return list;
+    }
+    public List<ReportNum> getReport(){
+        List<Map<String,String>> list=userNumDao.selectNum();
+        List<ReportNum> list1=new ArrayList<>();
+        for(Map<String,String> map:list){
+            ReportNum reportNum=new ReportNum();
+            reportNum.setUserid(map.get("userid"));
+            reportNum.setNum(String.valueOf(map.get("num")));
+            reportNum.setName(userDao.selectUserById(reportNum.getUserid()).getName());
+            list1.add(reportNum);
+        }
+        return list1;
     }
 
 }

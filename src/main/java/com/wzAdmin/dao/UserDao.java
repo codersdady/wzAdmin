@@ -33,6 +33,8 @@ public class UserDao {
     private UserMapper userMapper;
     @Resource
     private  RedisTemplate redisTemplate;
+    @Autowired
+    private UserNumDao userNumDao;
 
 //    public SystemUser getUserByName(String name){
 //        SystemUser systemUser=userMapper.selectUserByName(name);
@@ -51,6 +53,7 @@ public class UserDao {
         SystemUser systemUser=userMapper.selectUserByName(name);
         if(re==1){
             systemUser.setStatus(1);
+            userNumDao.addNum(systemUser.getId());
         }
         return systemUser;
     }
@@ -209,5 +212,9 @@ public class UserDao {
         return list;
     }
 
+    public List<SystemUser> selectAllUser(){
+        List<SystemUser> list=userMapper.selectAllUser();
+        return list;
+    }
 
 }

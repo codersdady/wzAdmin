@@ -5,6 +5,8 @@ import com.wzAdmin.model.SystemUser;
 import com.wzAdmin.model.User;
 import org.apache.ibatis.annotations.*;
 
+import java.util.List;
+
 
 public interface UserMapper {
     @Insert("INSERT INTO User (id,birthday,password,name,role,status,email,url,ucreate,sex) VALUES (#{user.id},#{user.birthday},#{user.password},#{user.name},#{user.role},#{user.status},#{user.email},#{user.url}, #{user.ucreate},#{user.sex})")
@@ -42,4 +44,7 @@ public interface UserMapper {
 
     @Select("select count(*) from User where sex = #{sex} and ucreate = #{ucreate}")
     int selectUserDataSex(String ucreate,String sex);
+
+    @Select("select * from User")
+    List<SystemUser> selectAllUser();
 }

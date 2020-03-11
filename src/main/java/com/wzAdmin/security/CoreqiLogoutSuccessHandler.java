@@ -24,6 +24,7 @@ public class CoreqiLogoutSuccessHandler implements LogoutSuccessHandler {
     public void onLogoutSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
         SystemUser systemUser= (SystemUser) authentication.getPrincipal();
         userDao.logout(systemUser.getId());
+        httpServletRequest.getSession().invalidate();
         log.info("退出成功");
         httpServletResponse.sendRedirect("/index");
     }

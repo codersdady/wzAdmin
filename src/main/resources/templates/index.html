@@ -633,11 +633,11 @@
                                 <table class="table table-borderless table-striped table-earning">
                                     <thead>
                                     <tr>
-                                        <th>id</th>
+                                        <th>Id</th>
                                         <th>姓名</th>
                                         <th>性别</th>
                                         <th>生日</th>
-                                        <th>密码</th>
+                                        <th>密码（已加密）</th>
                                         <th>角色权限</th>
                                         <th>用户状态</th>
                                         <th>邮箱</th>
@@ -645,59 +645,35 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                    <tr th:each="user:${UserList}">
+                                        <td th:text="${user.id}"></td>
+                                        <td th:text="${user.name}"></td>
+                                        <td th:text="${user.sex}==1?'男':'女'"></td>
+                                        <td th:text="${user.birthday}"></td>
+                                        <td th:text="${user.password}"></td>
+                                        <td th:text="${user.role}"></td>
+                                        <td th:text="${user.status}==0?'用户已冻结':(${user.status}==1?'离线':'在线')"></td>
+                                        <td th:text="${user.email}"></td>
+                                        <td th:text="${user.ucreate}"></td>
                                     </tr>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                         <div class="col-lg-3">
-                            <h2 class="title-1 m-b-25">Top countries</h2>
+                            <h2 class="title-1 m-b-25">用户活跃排行</h2>
                             <div class="au-card au-card--bg-blue au-card-top-countries m-b-40">
                                 <div class="au-card-inner">
                                     <div class="table-responsive">
                                         <table class="table table-top-countries">
                                             <tbody>
                                             <tr>
-                                                <td>United States</td>
-                                                <td class="text-right">$119,366.96</td>
+                                                <td>用户名</td>
+                                                <td class="text-center">登录次数</td>
                                             </tr>
-                                            <tr>
-                                                <td>Australia</td>
-                                                <td class="text-right">$70,261.65</td>
-                                            </tr>
-                                            <tr>
-                                                <td>United Kingdom</td>
-                                                <td class="text-right">$46,399.22</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Turkey</td>
-                                                <td class="text-right">$35,364.90</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Germany</td>
-                                                <td class="text-right">$20,366.96</td>
-                                            </tr>
-                                            <tr>
-                                                <td>France</td>
-                                                <td class="text-right">$10,366.96</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Australia</td>
-                                                <td class="text-right">$5,366.96</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Italy</td>
-                                                <td class="text-right">$1639.32</td>
+                                            <tr th:each="report:${Report}">
+                                                <td th:text="${report.name}"></td>
+                                                <td class="text-center" th:text="${report.num}"></td>
                                             </tr>
                                             </tbody>
                                         </table>

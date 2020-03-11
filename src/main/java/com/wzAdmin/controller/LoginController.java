@@ -1,19 +1,26 @@
 package com.wzAdmin.controller;
 
 
+import com.wzAdmin.model.ReportNum;
+import com.wzAdmin.model.SystemUser;
+import com.wzAdmin.model.User;
 import com.wzAdmin.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
+import java.util.List;
 
 @Controller
 public class LoginController {
 
+    @Autowired
+    private UserService userService;
 
     @GetMapping(value = "/login")
     private String loginPage() throws IOException {
@@ -27,7 +34,11 @@ public class LoginController {
     }
 
     @GetMapping(value = "/index")
-    private String index(){
+    private String index(Model model){
+        List<SystemUser> list=userService.getAllUser();
+        List<ReportNum> reportNumList=userService.getReport();
+        model.addAttribute("UserList",list);
+        model.addAttribute("Report",reportNumList);
         return "index";
     }
 
