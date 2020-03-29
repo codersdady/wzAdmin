@@ -41,9 +41,9 @@ public class UserService{
         return resule;
     }
     public String getImgById(String id){
-        long a= System.currentTimeMillis();
+//        long a= System.currentTimeMillis();
         String img=userDao.getImgById(id);
-        System.out.println(System.currentTimeMillis()-a+"毫秒");
+//        System.out.println(System.currentTimeMillis()-a+"毫秒");
         return img;
     }
     public int[] getUserNumByData(){

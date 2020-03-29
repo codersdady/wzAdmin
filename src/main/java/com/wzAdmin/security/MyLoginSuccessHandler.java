@@ -34,8 +34,10 @@ public class MyLoginSuccessHandler extends SavedRequestAwareAuthenticationSucces
         Cookie cookie=new Cookie("userid",systemUser.getId());
         Cookie cookie1=new Cookie("username",systemUser.getName());
         Cookie cookie2=new Cookie("email",systemUser.getEmail());
+
         if(systemUser.getRole().contains("root")){
-            Cookie cookie3=new Cookie("root","true");
+            Cookie cookie3=cookie3=new Cookie("root","true");
+            response.addCookie(cookie3);
         }
 
         request.getSession().setAttribute("userid",systemUser.getId());
@@ -43,7 +45,7 @@ public class MyLoginSuccessHandler extends SavedRequestAwareAuthenticationSucces
         response.addCookie(cookie);
         response.addCookie(cookie1);
         response.addCookie(cookie2);
-//        response.addCookie(cookie3);
+
         response.sendRedirect("/index");
         //new DefaultRedirectStrategy().sendRedirect(request, response, "/success");
     }

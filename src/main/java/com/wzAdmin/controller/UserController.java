@@ -6,6 +6,7 @@ import com.wzAdmin.service.UserService;
 import com.wzAdmin.utils.Base64ImageUtils;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -45,15 +46,15 @@ public class UserController {
 
         if(name==null||name.equals("")){
             model.addAttribute("log","用户名不能为空");
-            return "/register";
+            return "register";
         }
         if(password==null||password.equals("")){
             model.addAttribute("log","用户密码不能为空");
-            return "/register";
+            return "register";
         }
         if(email==null||email.equals("")){
             model.addAttribute("log","用户邮箱不能为空");
-            return "/register";
+            return "register";
         }
         SystemUser systemUser=new SystemUser();
         systemUser.setName(name);
@@ -71,9 +72,9 @@ public class UserController {
         String s=userService.addUser(systemUser);
         if("exist".equals(s)){
             model.addAttribute("log","用户名已存在！");
-            return "/register";
+            return "register";
         }else{
-            return "/login";
+            return "login";
         }
 
     }
@@ -87,7 +88,7 @@ public class UserController {
 
         SystemUser user= (SystemUser) authentication.getPrincipal();
         model.addAttribute("user",user);
-        return "/form";
+        return "form";
 
     }
 
@@ -102,14 +103,14 @@ public class UserController {
 
         SystemUser systemUser= (SystemUser) authentication.getPrincipal();
         systemUser.setName(name);
-        systemUser.setPassword(password);
+        systemUser.setPassword(new BCryptPasswordEncoder().encode(password));
         systemUser.setBirthday(birthday);
         systemUser.setEmail(email);
         userService.updateUser(systemUser);
         authentication.getPrincipal();
         model.addAttribute("user",authentication.getPrincipal());
         model.addAttribute("alert",true);
-        return "/form";
+        return "form";
 
     }
 
@@ -149,7 +150,7 @@ public class UserController {
         List<ReportNum> reportNumList=userService.getReport();
         model.addAttribute("UserList",list);
         model.addAttribute("Report",reportNumList);
-        return "/index";
+        return "index";
     }
     @GetMapping(value = "/up_user")
     private String up_user(@RequestParam(value = "id") String id,
@@ -159,7 +160,7 @@ public class UserController {
         List<ReportNum> reportNumList=userService.getReport();
         model.addAttribute("UserList",list);
         model.addAttribute("Report",reportNumList);
-        return "/index";
+        return "index";
     }
 
 
