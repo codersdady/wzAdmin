@@ -1,4 +1,16 @@
 # 项目描述
+
+## 压力测试
+
+**docker中1000总量，100并行下压力测试**
+
+![avatar](https://github.com/codersdady/wzAdmin/blob/master/img/docker_admin_100.png)
+
+**docker中1000总量，单线程下压力测试**
+
+![avatar](https://github.com/codersdady/wzAdmin/blob/master/img/docker_admin_one.png)
+
+
 ## 前端
 <font size=4 face="宋体"><p  style="text-indent:2em">**本项目前端用到的有jQuery、ajax、thymeleaf，CSS样式使用的是bootstrap模板。**</p>
 </font>
